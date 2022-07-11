@@ -4,7 +4,7 @@ import helmet from 'helmet';
 import ratelimit from 'express-rate-limit';
 import errorMiddleware from './middleware/error.middleware';
 import config from './config';
-import db from './database';
+// import db from './database'; //! Testing your Database Connections
 
 const PORT = config.port || 3000;
 //* Create instance server
@@ -40,18 +40,18 @@ app.use((_req: Request, res: Response) => {
 });
 
 //* Testing database
-db.connect().then((client) => {
-  return client
-    .query('SELECT NOW()')
-    .then((res) => {
-      client.release();
-      console.log(res.rows);
-    })
-    .catch((err) => {
-      client.release();
-      console.log(err.stack);
-    });
-});
+// db.connect().then((client) => {
+//   return client
+//     .query('SELECT NOW()')
+//     .then((res) => {
+//       client.release();
+//       console.log(res.rows);
+//     })
+//     .catch((err) => {
+//       client.release();
+//       console.log(err.stack);
+//     });
+// });
 
 app.use(errorMiddleware);
 
