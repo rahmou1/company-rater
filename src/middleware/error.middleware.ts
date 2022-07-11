@@ -8,7 +8,7 @@ const errorMiddleware = (
 ) => {
   const status = error.status || 500;
   const message = error.message || 'Whoops!! 🤷‍♂️ something went wrong';
-  res.status(status).json({ status, message });
+  res.status(status).json({ status, statusCode: 'false', message });
 };
 
 export default errorMiddleware;

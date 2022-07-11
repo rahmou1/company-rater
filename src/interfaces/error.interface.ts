@@ -3,6 +3,7 @@ interface Error {
   stack?: string;
   message?: string;
   status?: number;
+  statusCode?: string;
 }
 
 export default Error;
