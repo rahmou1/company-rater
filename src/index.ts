@@ -2,6 +2,7 @@ import express, { Application, Request, Response } from 'express';
 import morgan from 'morgan';
 import helmet from 'helmet';
 import ratelimit from 'express-rate-limit';
+import errorMiddleware from './middleware/error.middleware';
 
 const PORT = 3000;
 //* Create instance server
@@ -27,6 +28,16 @@ app.use(
 app.get('/', (req: Request, res: Response) => {
   res.json({ status: 'true', message: 'Hello World ❤️👀' });
 });
+
+app.use((_req: Request, res: Response) => {
+  res.status(404).json({
+    status: 'false',
+    message:
+      'I think you are lost 😒, and when we are lost we just go back to Home 🤣',
+  });
+});
+
+app.use(errorMiddleware);
 
 //* start express server
 app.listen(PORT, () => {
