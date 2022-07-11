@@ -41,7 +41,7 @@ class UserModel {
     try {
       const connection = await db.connect();
       const sql =
-        'SELECT id, first_name, last_name, user_name, email, working_company, profile_pic';
+        'SELECT id, first_name, last_name, user_name, email, working_company, profile_pic from users';
       const result = await connection.query(sql);
       connection.release();
       return result.rows;
@@ -68,10 +68,11 @@ class UserModel {
     try {
       const connection = await db.connect();
       const sql = `UPDATE users
-       SET first_name = $1, last_name = $2, user_name=$3, email=$4, working_company=$5, password=$6, profile_pic=$7 
+       SET first_name=$1, last_name=$2, user_name=$3, email=$4, working_company=$5, password=$6, profile_pic=$7 
        WHERE id=$8
         RETURNING id, first_name, last_name, user_name, email, working_company, profile_pic`;
       const result = await connection.query(sql, [
+        u.id,
         u.first_name,
         u.last_name,
         u.user_name,

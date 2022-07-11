@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
 import UserModel from '../models/user.model';
-import users from '../routes/api/users.routes';
 
 const userModel = new UserModel();
 
@@ -10,10 +9,10 @@ export const create = async (
   next: NextFunction
 ) => {
   try {
-    const user = await userModel.create(req.body);
+    const users = await userModel.create(req.body);
     res.json({
       status: 'true',
-      data: { ...user },
+      data: { ...users },
       message: 'User Created Successfully 👌',
     });
   } catch (error) {
