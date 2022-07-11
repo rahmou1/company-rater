@@ -3,8 +3,10 @@ import morgan from 'morgan';
 import helmet from 'helmet';
 import ratelimit from 'express-rate-limit';
 import errorMiddleware from './middleware/error.middleware';
+import config from './config';
+import db from './database';
 
-const PORT = 3000;
+const PORT = config.port || 3000;
 //* Create instance server
 const app: Application = express();
 //* Middleware to parse incoming requests
@@ -35,6 +37,20 @@ app.use((_req: Request, res: Response) => {
     message:
       'I think you are lost 😒, and when we are lost we just go back to Home 🤣',
   });
+});
+
+//* Testing database
+db.connect().then((client) => {
+  return client
+    .query('SELECT NOW()')
+    .then((res) => {
+      client.release();
+      console.log(res.rows);
+    })
+    .catch((err) => {
+      client.release();
+      console.log(err.stack);
+    });
 });
 
 app.use(errorMiddleware);
