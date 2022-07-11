@@ -72,7 +72,6 @@ class UserModel {
        WHERE id=$8
         RETURNING id, first_name, last_name, user_name, email, working_company, profile_pic`;
       const result = await connection.query(sql, [
-        u.id,
         u.first_name,
         u.last_name,
         u.user_name,
@@ -80,6 +79,7 @@ class UserModel {
         u.working_company,
         u.password,
         u.profile_pic,
+        u.id,
       ]);
       connection.release();
       return result.rows[0];
