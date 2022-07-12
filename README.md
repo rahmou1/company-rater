@@ -14,4 +14,4 @@
 
 ## Authenticate-User:
 
-#### Delete one user POST:: (/api/users/authenticate)
+#### Login one user POST:: (/api/users/authenticate)
