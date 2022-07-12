@@ -1,1 +1,2 @@
-# company-rater
+# Company-Rater
+

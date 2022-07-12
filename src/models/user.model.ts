@@ -46,7 +46,7 @@ class UserModel {
       connection.release();
       return result.rows;
     } catch (error) {
-      throw new Error(`Error at retreving users ${(error as Error).message}`);
+      throw new Error(`Error at retrieving users ${(error as Error).message}`);
     }
   }
   // Get Specific User
