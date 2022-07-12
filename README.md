@@ -1,6 +1,6 @@
 # Company-Rater
 
-## Users-APIs
+## Users-APIs:
 
 #### Retrieve all user GET:: (/api/users)
 
