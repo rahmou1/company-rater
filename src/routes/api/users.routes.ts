@@ -1,13 +1,17 @@
 import { Router } from 'express';
 import * as controllers from '../../controllers/users.controllers';
+import authenticationMiddleware from '../../middleware/authentication.middleware';
 const users = Router();
 
-users.route('/').get(controllers.getMany).post(controllers.create);
+users
+  .route('/')
+  .get(authenticationMiddleware, controllers.getMany)
+  .post(controllers.create);
 users
   .route('/:id')
-  .get(controllers.getOne)
-  .patch(controllers.updateOne)
-  .delete(controllers.deleteOne);
+  .get(authenticationMiddleware, controllers.getOne)
+  .patch(authenticationMiddleware, controllers.updateOne)
+  .delete(authenticationMiddleware, controllers.deleteOne);
 
 // authentication
 users.route('/authenticate').post(controllers.authenticate);
