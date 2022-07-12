@@ -9,4 +9,7 @@ users
   .patch(controllers.updateOne)
   .delete(controllers.deleteOne);
 
+// authentication
+users.route('/authenticate').post(controllers.authenticate);
+
 export default users;
