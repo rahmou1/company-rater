@@ -7,5 +7,6 @@ CREATE TABLE users(
     email VARCHAR(50) UNIQUE NOT NULL,
     working_company VARCHAR(50),
     password VARCHAR(255) NOT NULL,
-    profile_pic VARCHAR(255) 
+    profile_pic VARCHAR(255),
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
